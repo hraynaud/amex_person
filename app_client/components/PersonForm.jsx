@@ -7,16 +7,15 @@ class PersonForm extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      name: '',
+      email: '',
+      dob: '',
+      errors: {}
+    };
     if (this.props.location && this.props.location.state){
-     this.state = this.props.location.state;
-    }else{
-      this.state = {
-        name: '',
-        email: '',
-        dob: '',
-        errors: {}
-      };
-     }
+      this.state = this.props.location.state;
+    }
   }
 
   onChange(e) {
@@ -30,9 +29,11 @@ class PersonForm extends React.Component {
   }
 
   render() {
-    let emailError = this.state.errors.email !== undefined ? "show" : "hide";
+    let emailError = this.state.errors &&  this.state.errors.email ? "show" : "hide";
+    let msg = this.state.successMsg || this.props.errMsg
     return (
       <div>
+        <h3>{msg}</h3>
         <p>
           Create a Person
         </p>

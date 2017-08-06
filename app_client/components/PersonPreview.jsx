@@ -14,10 +14,13 @@ class PersonPreview extends React.Component {
 
   handleSubmit(e){
     e.preventDefault();
+    let email, dob, name;
+
+    ({email, name, dob} = this.state);
 
     let success= (response) =>{
       browserHistory.push({pathname: '/', state:{
-        msg: `User ${this.state.name} successfully created`
+        successMsg: `User ${this.state.name} successfully created`
       }
       })
     };
@@ -25,9 +28,10 @@ class PersonPreview extends React.Component {
     let err = (error) =>{
       browserHistory.push({pathname: '/error', state: {
         errors: JSON.parse(error.responseText).errors,
-        email: this.state.email,
-        name: this.state.name,
-        dob: this.state.dob,
+        email: email,
+        name:name,
+        dob: dob,
+        successMsg: undefined
       }
       });
     };
