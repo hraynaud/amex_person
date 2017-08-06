@@ -31,7 +31,7 @@ var App =  createReactClass({
     });
   },
 
-  writeToAPI: function(method, path, data, successFunction) {
+  writeToAPI: function(method, path, data, successFunction, errorFunction) {
     var url = this.props.origin + path;
     Reqwest({
       url: url,
@@ -40,9 +40,7 @@ var App =  createReactClass({
       method: method,
       contentType: 'application/json',
       success: successFunction,
-      error: function(error) {
-        console.error(url, error['response']);
-      }
+      error: errorFunction
     });
   },
 
