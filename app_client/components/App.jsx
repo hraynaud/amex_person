@@ -5,8 +5,8 @@ import Reqwest from 'reqwest';
 
 class App extends React.Component {
 
-  getDefaultProps(){
-    return {origin: process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : ''};
+  constructor(props){
+    super(props);
   }
 
 
@@ -25,7 +25,7 @@ class App extends React.Component {
   }
 
   writeToAPI (method, path, data, successFunction, errorFunction) {
-    var url = this.props.origin + path;
+    var url = this.origin + path;
     Reqwest({
       url: url,
       data: data,
@@ -56,5 +56,13 @@ class App extends React.Component {
     );
   }
 };
+App.propTypes = {
+ origin: React.PropTypes.string
+};
+
+App.defaultProps = {
+ origin: process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : ''
+};
+
 
 export default App;
