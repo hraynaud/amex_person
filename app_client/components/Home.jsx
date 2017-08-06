@@ -1,6 +1,5 @@
 import React from 'react';
 import PersonForm from './PersonForm.jsx';
-import createReactClass from 'create-react-class'
 
 class Home extends React.Component {
   render() {

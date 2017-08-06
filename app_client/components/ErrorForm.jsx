@@ -1,5 +1,4 @@
 import React from 'react';
-import createReactClass from 'create-react-class'
 import { browserHistory } from 'react-router'
 
 import PersonForm from './PersonForm.jsx';
