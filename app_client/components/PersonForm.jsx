@@ -3,57 +3,62 @@ import createReactClass from 'create-react-class'
 import { browserHistory } from 'react-router'
 
 
-class CreatePerson extends React.Component {
+class PersonForm extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      name: null,
-      email: null,
-      dateOfBirth: null,
-      errors: []
-    };
+    if (this.props.location && this.props.location.state){
+     this.state = this.props.location.state;
+    }else{
+      this.state = {
+        name: '',
+        email: '',
+        dob: '',
+        errors: {}
+      };
+     }
+  }
+
+  onChange(e) {
+    this.setState({[e.target.name]: e.target.value})
   }
 
   handlePreview(e){
     e.preventDefault();
-
-    let path = `preview/${this.name.value}/${this.email.value}/${this.dateOfBirth.value}`;
+    let path = `preview/${this.name.value}/${this.email.value}/${this.dob.value}`;
     browserHistory.push(path);
-
   }
 
   render() {
+    let emailError = this.state.errors.email !== undefined ? "show" : "hide";
     return (
       <div>
         <p>
           Create a Person
         </p>
         <form onSubmit={this.handlePreview.bind(this)}>
-
           <div>
             <label name="name">Name</label>
-            <input type="text" name="name" ref={(name) => {this.name = name;}}  /> 
+            <input type="text"  value={this.state.name} name="name" onChange={(value) => this.onChange(value)} ref={(name) => {this.name = name;}}  /> 
           </div>
 
           <div>
             <label name="email">Email</label>
-            <input type="text" name="email" ref={(email) => {this.email = email;}} /> 
+            <input type="text" value={this.state.email} name="email"  onChange={(value) => this.onChange(value)} ref={(email) => {this.email = email;}} /> 
+            <span className={emailError}>Email has already been taken </span>
           </div>
 
           <div>
             <label name="date_of_birth">Date Of Birth</label>
-            <input type="text" name="date_of_birth" ref={(dob) => {this.dateOfBirth = dob;}} /> 
+            <input type="text" value={this.state.dob} name="date_of_birth"  onChange={(value) => this.onChange(value)} ref={(dob) => {this.dob = dob;}} /> 
           </div>
 
           <button type="submit" >Preview</button>
         </form>
-
       </div>
-
 
     );
   }
 }
 
-export default CreatePerson
+export default PersonForm
