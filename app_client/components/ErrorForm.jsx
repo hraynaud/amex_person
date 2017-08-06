@@ -17,7 +17,6 @@ class ErrorForm extends React.Component {
         <PersonForm origin={this.props.origin} 
           writeToAPI={this.props.writeToAPI} 
           readFromAPI={this.readFromAPI} 
-          errors={this.state.errors}
         location={this.props.location} errMsg="Person could not be created due to the following errors"/>
       </div>
     )
