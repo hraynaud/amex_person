@@ -1,5 +1,6 @@
 import React from 'react';
 import createReactClass from 'create-react-class'
+import { browserHistory } from 'react-router'
 
 class PersonPreview extends React.Component {
   constructor(props){
@@ -13,10 +14,26 @@ class PersonPreview extends React.Component {
 
   handleSubmit(e){
     e.preventDefault();
+
+    let success= (response) =>{
+      browserHistory.push({pathname: '/', state:{
+        msg: `User ${this.state.name} successfully created`
+      }
+      })
+    };
+
+    let err = (error) =>{
+      browserHistory.push({pathname: '/error', state: {
+        errors: JSON.parse(error.responseText).errors,
+        email: this.state.email,
+        name: this.state.name,
+        dob: this.state.dob,
+      }
+      });
+    };
+
     let formData = JSON.stringify({email: this.state.email, name: this.state.name, date_of_birth: this.state.dob});
-    this.props.writeToAPI('post', '/persons', formData, function(response) { 
-      console.log("Success")
-    });
+    this.props.writeToAPI('post', '/persons', formData, success , err)
   }
 
   render() {
