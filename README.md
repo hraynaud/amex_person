@@ -1,24 +1,7 @@
-# README
+This is a small test app that uses a react front end  and rails 5 api on the backend.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The live test app is available at the following url
 
-Things you may want to cover:
+https://amex-person-test.herokuapp.com/
 
-* Ruby version
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
