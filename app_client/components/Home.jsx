@@ -7,7 +7,7 @@ class Home extends React.Component {
     return (
       <div id="home">
         <h1>Welcome, Hi nice to see you here</h1>
-        <PersonForm origin={this.props.origin} writeToAPI={this.props.writeToAPI} readFromAPI={this.readFromAPI}/>
+        <PersonForm origin={this.props.origin} writeToAPI={this.props.writeToAPI} readFromAPI={this.readFromAPI} location={this.props.location}/>
       </div>
     );
   }
