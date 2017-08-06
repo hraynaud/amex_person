@@ -46,7 +46,7 @@ class PersonForm extends React.Component {
           <div>
             <label name="email">Email</label>
             <input type="text" value={this.state.email} name="email"  onChange={(value) => this.onChange(value)} ref={(email) => {this.email = email;}} /> 
-            <span className={emailError}>Email has already been taken </span>
+            <span className={`error ${emailError}`}>Email has already been taken </span>
           </div>
 
           <div>
